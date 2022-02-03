@@ -15,6 +15,12 @@ export default function Button({ category }) {
 
     if (isCategoryActive) {
       setIsCategoryActive(false);
+
+      // filtering out a category when clicked the second time
+      const newActiveCategories = activeCategories.filter(
+        (item) => item !== category
+      );
+      setActiveCategories(newActiveCategories);
     } else {
       setIsCategoryActive(true);
     }
