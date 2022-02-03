@@ -1,12 +1,29 @@
+import { useState } from "react";
+
 import { AiFillCloseCircle } from "react-icons/ai";
+import { useMovieContext } from "../../store/context";
 
 import * as S from "./styles";
 
-export default function Button({ category, highlight }) {
+export default function Button({ category }) {
+  const { activeCategories, setActiveCategories } = useMovieContext();
+
+  const [isCategoryActive, setIsCategoryActive] = useState(false);
+
+  function addCategory() {
+    setActiveCategories([...activeCategories, category]);
+
+    if (isCategoryActive) {
+      setIsCategoryActive(false);
+    } else {
+      setIsCategoryActive(true);
+    }
+  }
+
   return (
-    <S.Button highlight={highlight}>
+    <S.Button highlight={isCategoryActive} onClick={addCategory}>
       <span>{category}</span>
-      {highlight && <AiFillCloseCircle color="#FFF" size={20} />}
+      {isCategoryActive && <AiFillCloseCircle color="#FFF" size={20} />}
     </S.Button>
   );
 }

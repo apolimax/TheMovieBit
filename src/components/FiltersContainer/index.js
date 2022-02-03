@@ -14,7 +14,7 @@ export default function FiltersContainer() {
       <p>FILTRE POR:</p>
       <S.CategoryButtonsWrapp>
         {categories.map((category, index) => (
-          <Button key={index} highlight={false} category={category} />
+          <Button key={index} category={category} />
         ))}
       </S.CategoryButtonsWrapp>
     </S.FiltersContainer>

@@ -16,6 +16,8 @@ export default function MoviesContextProvider({ children }) {
     "Família",
   ]);
 
+  const [activeCategories, setActiveCategories] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,20 +42,43 @@ export default function MoviesContextProvider({ children }) {
       }
     }
 
+    async function getPopularMoviesByCategories() {}
+
     getPopularMovies();
   }, []);
 
   console.log("mostPopulars", mostPopulars);
+  console.log("activeCategories", activeCategories);
 
   return (
-    <MoviesContext.Provider value={{ mostPopulars, isLoading, categories }}>
+    <MoviesContext.Provider
+      value={{
+        mostPopulars,
+        isLoading,
+        categories,
+        activeCategories,
+        setActiveCategories,
+      }}
+    >
       {children}
     </MoviesContext.Provider>
   );
 }
 
 export function useMovieContext() {
-  const { mostPopulars, isLoading, categories } = useContext(MoviesContext);
+  const {
+    mostPopulars,
+    isLoading,
+    categories,
+    activeCategories,
+    setActiveCategories,
+  } = useContext(MoviesContext);
 
-  return { mostPopulars, isLoading, categories };
+  return {
+    mostPopulars,
+    isLoading,
+    categories,
+    activeCategories,
+    setActiveCategories,
+  };
 }
