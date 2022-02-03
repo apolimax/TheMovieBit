@@ -26,6 +26,10 @@ export const FiltersContainer = styled.div`
     h2 {
       font-size: 2rem;
     }
+
+    p {
+      text-align: center;
+    }
     `}
 
   ${media.greaterThan("large")`

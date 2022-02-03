@@ -43,7 +43,7 @@ export default function MoviesContextProvider({ children }) {
     getPopularMovies();
   }, []);
 
-  //   console.log("mostPopulars", mostPopulars);
+  console.log("mostPopulars", mostPopulars);
 
   return (
     <MoviesContext.Provider value={{ mostPopulars, isLoading, categories }}>
