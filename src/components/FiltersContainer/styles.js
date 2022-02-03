@@ -12,7 +12,8 @@ export const FiltersContainer = styled.div`
     color: #ffffff;
     font-weight: 700;
     font-size: 1.5rem;
-    margin-bottom: 40px;
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   p {
@@ -33,9 +34,10 @@ export const FiltersContainer = styled.div`
     `}
 
   ${media.greaterThan("large")`
-      padding: 85px 330px;
-      h2 {
+  h2 {
+        padding: 35px 200px;
         font-size: 3rem;
+        margin-bottom: 10px;
       }
 
   `}
@@ -45,4 +47,12 @@ export const CategoryButtonsWrapp = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  max-width: 905px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+
+  ${media.greaterThan("medium")`
+    margin-bottom: 40px;
+  
+  `}
 `;

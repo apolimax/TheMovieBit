@@ -13,9 +13,9 @@ export const Button = styled.button`
   color: ${(props) => (props.highlight ? "#ffffff" : "#323232")};
 
   border-radius: 4px;
-  padding: 6px 16px;
+  padding: 6px 12px;
 
   span {
-    margin-right: ${(props) => (props.highlight ? "8px" : "0")};
+    margin-right: ${(props) => (props.highlight ? "3px" : "0")};
   }
 `;

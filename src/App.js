@@ -1,14 +1,15 @@
-import Header from "./components/Header";
-import FiltersContainer from "./components/FiltersContainer";
-import MoviesListContainer from "./components/MoviesListContainer";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Movie from "./pages/Movie";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <FiltersContainer />
-      <MoviesListContainer />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<Movie />} />
+      </Routes>
+    </>
   );
 }
 

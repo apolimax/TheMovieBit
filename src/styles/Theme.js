@@ -5,6 +5,7 @@ const theme = {
     lightPurple: "#5c16c5",
     darkPurple: "#2d0c5e",
     caramel: "#D18000",
+    gray: "#646464;",
   },
 };
 

@@ -10,6 +10,7 @@ export default function MoviesListContainer() {
       {mostPopulars.map((movie) => (
         <MoviesItem
           key={movie.id}
+          id={movie.id}
           cover={movie.poster_path}
           title={movie.title}
           date={movie.release_date}

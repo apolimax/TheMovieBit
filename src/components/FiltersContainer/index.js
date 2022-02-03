@@ -4,17 +4,17 @@ import Button from "../Button";
 import * as S from "./styles";
 
 export default function FiltersContainer() {
-  const { categories } = useMovieContext();
+  const { genres } = useMovieContext();
 
-  console.log("categories", categories);
+  // console.log("categories", genres);
 
   return (
     <S.FiltersContainer>
       <h2>Milhões de filmes, séries e pessoas para descobrir. Explore já.</h2>
       <p>FILTRE POR:</p>
       <S.CategoryButtonsWrapp>
-        {categories.map((category, index) => (
-          <Button key={index} category={category} />
+        {genres.map((category) => (
+          <Button key={category.id} category={category} />
         ))}
       </S.CategoryButtonsWrapp>
     </S.FiltersContainer>

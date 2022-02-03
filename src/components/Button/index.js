@@ -6,30 +6,33 @@ import { useMovieContext } from "../../store/context";
 import * as S from "./styles";
 
 export default function Button({ category }) {
-  const { activeCategories, setActiveCategories } = useMovieContext();
+  const { activeGenres, setActiveGenres, getPopularMoviesByGenres } =
+    useMovieContext();
 
-  const [isCategoryActive, setIsCategoryActive] = useState(false);
+  const [isGenreActive, setIsGenreActive] = useState(false);
 
   function addCategory() {
-    setActiveCategories([...activeCategories, category]);
+    if (isGenreActive) {
+      setIsGenreActive(false);
 
-    if (isCategoryActive) {
-      setIsCategoryActive(false);
-
-      // filtering out a category when clicked the second time
-      const newActiveCategories = activeCategories.filter(
-        (item) => item !== category
+      // filtering out a genre when clicked the second time
+      const newActiveGenres = activeGenres.filter(
+        (item) => item !== category.id
       );
-      setActiveCategories(newActiveCategories);
+      setActiveGenres(newActiveGenres);
+      getPopularMoviesByGenres(newActiveGenres);
     } else {
-      setIsCategoryActive(true);
+      const newActiveGenres = [...activeGenres, category.id];
+      setActiveGenres(newActiveGenres);
+      getPopularMoviesByGenres(newActiveGenres);
+      setIsGenreActive(true);
     }
   }
 
   return (
-    <S.Button highlight={isCategoryActive} onClick={addCategory}>
-      <span>{category}</span>
-      {isCategoryActive && <AiFillCloseCircle color="#FFF" size={20} />}
+    <S.Button highlight={isGenreActive} onClick={addCategory}>
+      <span>{category.name}</span>
+      {isGenreActive && <AiFillCloseCircle color="#FFF" size={12} />}
     </S.Button>
   );
 }
