@@ -5,38 +5,41 @@ const MoviesContext = createContext({});
 
 export default function MoviesContextProvider({ children }) {
   const [mostPopulars, setMostPopulars] = useState([]);
+  const [mostPopularsContext, setMostPopularsContext] = useState([]);
   const [genres, setGenres] = useState([]);
   const [activeGenres, setActiveGenres] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true);
 
   // console.log("activeGenres", activeGenres);
 
-  useEffect(() => {
-    async function getPopularMovies(page) {
-      try {
-        const response = await api.get(
-          `movie/popular?api_key=${
-            process.env.REACT_APP_TMDB_API_KEY
-          }&language=pt-BR&page=${page ? page : ""}`
-        );
+  async function getPopularMovies(page) {
+    try {
+      const response = await api.get(
+        `movie/popular?api_key=${
+          process.env.REACT_APP_TMDB_API_KEY
+        }&language=pt-BR&page=${page ? page : 1}`
+      );
 
-        // console.log("movies response", response);
+      // console.log("movies response", response);
 
-        if (response.status !== 200) {
-          throw new Error("Failed to load the data from the API");
-        }
-
-        const {
-          data: { results },
-        } = response;
-        setMostPopulars(results);
-        setIsLoading(false);
-      } catch (err) {
-        console.log("err", err);
-        setIsLoading(false);
+      if (response.status !== 200) {
+        throw new Error("Failed to load the data from the API");
       }
-    }
 
+      const {
+        data: { results },
+      } = response;
+      setMostPopulars(results);
+      setMostPopularsContext(results); // I won't change its state inside the app. I'll only use it to set the new state from the filters.
+      setIsLoading(false);
+    } catch (err) {
+      console.log("err", err);
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
     async function getGenres() {
       try {
         const response = await api.get(
@@ -72,6 +75,27 @@ export default function MoviesContextProvider({ children }) {
     // );
     // console.log("popularMoviesByGenres", popularMoviesByGenres);
     // setMostPopulars(popularMoviesByGenres);
+
+    if (genres.length === 0) {
+      // if (currentPage === 1) {}
+      getPopularMovies();
+    }
+
+    const popularMoviesByGenres = [];
+
+    mostPopularsContext.forEach((movie) => {
+      movie.genre_ids.forEach((genre_id) => {
+        genres.forEach((genre) => {
+          if (genre_id === genre) {
+            popularMoviesByGenres.push(movie);
+          }
+        });
+      });
+    });
+
+    const newPopularMoviesByGenres = Array.from(new Set(popularMoviesByGenres));
+
+    setMostPopulars(newPopularMoviesByGenres);
   }
 
   // console.log("mostPopulars", mostPopulars);
