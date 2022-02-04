@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import api from "../../api/api";
+import {
+  getCertification,
+  getDuration,
+  getFormattedReleaseDate,
+  getGenres,
+  getReleaseYear,
+} from "../../utils/utils";
 import Base from "../Base";
 
 import * as S from "./styles";
@@ -38,47 +46,6 @@ export default function Movie() {
     getMovieDetails(movieId);
   }, [movieId]);
 
-  function getReleaseDate(movie) {
-    let releaseDateBR = movie?.release_dates?.results?.filter(
-      (item) => item.iso_3166_1 === "BR"
-    )[0]?.release_dates[0].release_date;
-
-    // if there isn't a release date for Brazil
-    if (!releaseDateBR) {
-      releaseDateBR =
-        movie?.release_dates.results[0].release_dates[0].release_date;
-    }
-
-    return new Intl.DateTimeFormat("pt-BR").format(new Date(releaseDateBR));
-  }
-
-  function getCertification(movie) {
-    let certification = movie?.release_dates?.results?.filter(
-      (item) => item.iso_3166_1 === "BR"
-    )[0]?.release_dates[0].certification;
-
-    // if there isn't a certification for Brazil
-    if (!certification) {
-      certification =
-        movie?.release_dates?.results[0].release_dates[0].certification;
-    }
-
-    return certification;
-  }
-
-  function getDuration(runtime) {
-    const hour = `${runtime / 60}`[0];
-    const minutes = runtime % 60;
-
-    return `${hour}h ${minutes}m`;
-  }
-
-  function getGenres(genres) {
-    const generos = genres?.map((genre) => `${genre.name}, `).join(" ");
-
-    return generos;
-  }
-
   // movie details: poster, title, release year, age, release date brazil, genres, duration, grade, casting, movie description, trailer, recomendation
   if (isLoading) {
     return <p>Loading content ...</p>;
@@ -94,9 +61,12 @@ export default function Movie() {
             />
           </S.Image>
           <S.MovieDescription>
-            <h1>{currentMovieDetails.title}</h1>
+            <h1>
+              {currentMovieDetails.title} ({getReleaseYear(currentMovieDetails)}
+              )
+            </h1>
             <p>{getCertification(currentMovieDetails)}</p>
-            <p>{getReleaseDate(currentMovieDetails)} (BR)</p>
+            <p>{getFormattedReleaseDate(currentMovieDetails)} (BR)</p>
             <p>{getGenres(currentMovieDetails.genres)}</p>
             <p>{getDuration(currentMovieDetails.runtime)}</p>
           </S.MovieDescription>
