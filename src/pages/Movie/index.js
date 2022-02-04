@@ -39,17 +39,29 @@ export default function Movie() {
   }, [movieId]);
 
   function getReleaseDate(movie) {
-    const releaseDateBR = movie.release_dates?.results?.filter(
+    let releaseDateBR = movie?.release_dates?.results?.filter(
       (item) => item.iso_3166_1 === "BR"
-    )[0].release_dates[0].release_date;
+    )[0]?.release_dates[0].release_date;
+
+    // if there isn't a release date for Brazil
+    if (!releaseDateBR) {
+      releaseDateBR =
+        movie?.release_dates.results[0].release_dates[0].release_date;
+    }
 
     return new Intl.DateTimeFormat("pt-BR").format(new Date(releaseDateBR));
   }
 
   function getCertification(movie) {
-    const certification = movie.release_dates?.results?.filter(
+    let certification = movie?.release_dates?.results?.filter(
       (item) => item.iso_3166_1 === "BR"
-    )[0].release_dates[0].certification;
+    )[0]?.release_dates[0].certification;
+
+    // if there isn't a certification for Brazil
+    if (!certification) {
+      certification =
+        movie?.release_dates?.results[0].release_dates[0].certification;
+    }
 
     return certification;
   }
