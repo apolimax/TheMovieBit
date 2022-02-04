@@ -8,6 +8,10 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 16px 0;
 
+  img {
+    cursor: pointer;
+  }
+
   ${media.greaterThan("medium")`
     display: block;
     padding: 16px 112px;
