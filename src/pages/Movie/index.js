@@ -24,7 +24,7 @@ export default function Movie() {
     async function getMovieDetails(id) {
       try {
         const response = await api.get(
-          `/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR&append_to_response=credits,recommendations,release_dates`
+          `/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR&append_to_response=credits,recommendations,release_dates,videos`
         );
 
         console.log("movie recommendations", response);
@@ -45,6 +45,28 @@ export default function Movie() {
 
     getMovieDetails(movieId);
   }, [movieId]);
+
+  // function getCrew(movie, department, n) {
+  //   const crew = movie.credits.crew.filter(
+  //     (item) => item.department === departmen;
+
+  //   return crew;
+  // }
+
+  // function getCrew(movie) {
+
+  //   const directing = movie.credits.crew.filter(
+  //     (item) => item.department === "Directing"
+  //   );
+
+  //   return {
+  //     writing: writing.splice(0, 3), // only the first two people in writing
+  //     directing: directing.splice(0, 3), // only the first two people in directing
+  //   };
+
+  //   // console.log("writing", writing);
+  //   // console.log("directing", directing);
+  // }
 
   // movie details: poster, title, release year, age, release date brazil, genres, duration, grade, casting, movie description, trailer, recomendation
   if (isLoading) {
@@ -69,9 +91,22 @@ export default function Movie() {
             <p>{getFormattedReleaseDate(currentMovieDetails)} (BR)</p>
             <p>{getGenres(currentMovieDetails.genres)}</p>
             <p>{getDuration(currentMovieDetails.runtime)}</p>
+            <S.Sinopse>
+              <h4>Sinopse</h4>
+              <p>{currentMovieDetails.overview}</p>
+            </S.Sinopse>
+            <S.Crew>
+              {currentMovieDetails.credits.crew?.slice(0, 4).map((item) => (
+                <div key={item.credit_id}>
+                  {item.name} <br />
+                  {item.department}
+                </div>
+              ))}
+            </S.Crew>
           </S.MovieDescription>
         </S.Banner>
       </S.BannerContainer>
+      <S.MovieContent></S.MovieContent>
     </Base>
   );
 }

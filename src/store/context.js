@@ -9,16 +9,18 @@ export default function MoviesContextProvider({ children }) {
   const [genres, setGenres] = useState([]);
   const [activeGenres, setActiveGenres] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  console.log("currentPage", currentPage);
+
   const [isLoading, setIsLoading] = useState(true);
 
   // console.log("activeGenres", activeGenres);
 
-  async function getPopularMovies(page) {
+  async function getPopularMovies(currentPage) {
     try {
       const response = await api.get(
-        `movie/popular?api_key=${
-          process.env.REACT_APP_TMDB_API_KEY
-        }&language=pt-BR&page=${page ? page : 1}`
+        `movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR&page=${currentPage}`
       );
 
       // console.log("movies response", response);
@@ -63,9 +65,9 @@ export default function MoviesContextProvider({ children }) {
       }
     }
 
-    getPopularMovies();
+    getPopularMovies(currentPage);
     getGenres();
-  }, []);
+  }, [currentPage]);
 
   function getPopularMoviesByGenres(genres) {
     // console.log("mostPopulars", mostPopulars);
@@ -78,7 +80,7 @@ export default function MoviesContextProvider({ children }) {
 
     if (genres.length === 0) {
       // if (currentPage === 1) {}
-      getPopularMovies();
+      getPopularMovies(currentPage);
     }
 
     const popularMoviesByGenres = [];
@@ -110,6 +112,7 @@ export default function MoviesContextProvider({ children }) {
         activeGenres,
         setActiveGenres,
         getPopularMoviesByGenres,
+        setCurrentPage,
       }}
     >
       {children}
@@ -125,6 +128,7 @@ export function useMovieContext() {
     activeGenres,
     setActiveGenres,
     getPopularMoviesByGenres,
+    setCurrentPage,
   } = useContext(MoviesContext);
 
   return {
@@ -134,5 +138,6 @@ export function useMovieContext() {
     activeGenres,
     setActiveGenres,
     getPopularMoviesByGenres,
+    setCurrentPage,
   };
 }

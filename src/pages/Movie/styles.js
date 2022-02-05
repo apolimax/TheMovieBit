@@ -3,31 +3,60 @@ import media from "styled-media-query";
 
 export const BannerContainer = styled.div`
   background-color: ${(props) => props.theme.colors.darkPurple};
+  padding: 0 20px;
 `;
 
 export const Banner = styled.div`
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 40px;
+  justify-content: center;
 
-  img {
-    border-radius: 8px;
-    margin-top: 30px;
-    margin-bottom: 40px;
-  }
+  /* margin: 0 auto; */
 
   ${media.greaterThan("medium")`
     flex-direction: row;
     justify-content: center;
+
+    img {
+      margin-bottom: -40px;
+    }
   `}
 `;
 
-export const Image = styled.div``;
+export const Image = styled.div`
+  margin: 0 auto;
+  img {
+    border-radius: 8px;
+  }
+
+  ${media.greaterThan("medium")`
+    margin: 0;
+  `}
+`;
 
 export const MovieDescription = styled.div`
   color: #fff;
   h1 {
-    text-align: center;
+    /* text-align: center; */
     max-width: 342px;
   }
 `;
+
+export const Sinopse = styled.div`
+  margin-top: 30px;
+  margin-bottom: 40px;
+
+  p {
+    max-width: 500px;
+  }
+`;
+
+export const Crew = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+`;
+
+export const MovieContent = styled.div``;
