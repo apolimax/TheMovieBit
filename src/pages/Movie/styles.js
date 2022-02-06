@@ -80,6 +80,7 @@ export const Crew = styled.div`
 
 export const MovieContent = styled.div`
   padding: 0 0 0 20px;
+  margin-bottom: 80px;
 
   h2 {
     margin-top: 40px;

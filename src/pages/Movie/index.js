@@ -132,13 +132,17 @@ export default function Movie() {
             />
           </S.Trailer>
         )}
-        <h2 className="recomendations">Recomendações</h2>
-        <Recomendations
-          recomendations={currentMovieDetails.recommendations.results.slice(
-            0,
-            6
-          )}
-        />
+        {currentMovieDetails.recommendations.results.length > 0 && (
+          <>
+            <h2 className="recomendations">Recomendações</h2>
+            <Recomendations
+              recomendations={currentMovieDetails.recommendations.results.slice(
+                0,
+                6
+              )}
+            />
+          </>
+        )}
       </S.MovieContent>
     </Base>
   );
