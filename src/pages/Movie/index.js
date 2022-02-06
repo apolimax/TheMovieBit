@@ -14,6 +14,7 @@ import {
 import Base from "../Base";
 
 import * as S from "./styles";
+import Recomendations from "../../components/Recomendations";
 
 export default function Movie() {
   const { id } = useParams();
@@ -21,6 +22,10 @@ export default function Movie() {
 
   const [currentMovieDetails, setCurrentMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     async function getMovieDetails(id) {
@@ -116,15 +121,24 @@ export default function Movie() {
       <S.MovieContent>
         <h2>Elenco Original</h2>
         <Cast cast={currentMovieDetails.credits.cast.slice(0, 10)} />
-        <S.Trailer>
-          <h2>Trailer</h2>
-          <ReactPlayer
-            controls
-            width="100%"
-            height="100%"
-            url={`https://www.youtube.com/watch?v=${currentMovieDetails.videos.results[0].key}`}
-          />
-        </S.Trailer>
+        {!!currentMovieDetails.videos.results[0]?.key && (
+          <S.Trailer>
+            <h2>Trailer</h2>
+            <ReactPlayer
+              controls
+              width="100%"
+              height="100%"
+              url={`https://www.youtube.com/watch?v=${currentMovieDetails.videos.results[0].key}`}
+            />
+          </S.Trailer>
+        )}
+        <h2 className="recomendations">Recomendações</h2>
+        <Recomendations
+          recomendations={currentMovieDetails.recommendations.results.slice(
+            0,
+            6
+          )}
+        />
       </S.MovieContent>
     </Base>
   );

@@ -5,7 +5,7 @@ import { useMovieContext } from "../../store/context";
 import Base from "../Base";
 
 export default function Home() {
-  const { setCurrentPage, setActiveGenres } = useMovieContext();
+  const { mostPopulars, setCurrentPage, setActiveGenres } = useMovieContext();
 
   function changePage({ selected }) {
     setCurrentPage(selected + 1);
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Base>
       <FiltersContainer />
-      <MoviesListContainer />
+      <MoviesListContainer movies={mostPopulars} />
 
       <Pagination changePage={changePage} />
     </Base>

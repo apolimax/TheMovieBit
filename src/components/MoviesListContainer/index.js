@@ -1,13 +1,10 @@
-import { useMovieContext } from "../../store/context";
 import MoviesItem from "../MoviItem";
 import * as S from "./styles";
 
-export default function MoviesListContainer() {
-  const { mostPopulars } = useMovieContext();
-
+export default function MoviesListContainer({ movies }) {
   return (
     <S.MoviesListContainer>
-      {mostPopulars.map((movie) => (
+      {movies.map((movie) => (
         <MoviesItem
           key={movie.id}
           id={movie.id}

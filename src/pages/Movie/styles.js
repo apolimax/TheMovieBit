@@ -79,11 +79,15 @@ export const Crew = styled.div`
 `;
 
 export const MovieContent = styled.div`
-  margin-top: 40px;
   padding: 0 0 0 20px;
 
   h2 {
+    margin-top: 40px;
     margin-bottom: 10px;
+
+    &.recomendations {
+      margin-top: 80px;
+    }
   }
 `;
 
