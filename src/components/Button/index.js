@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useMovieContext } from "../../store/context";
@@ -6,10 +6,18 @@ import { useMovieContext } from "../../store/context";
 import * as S from "./styles";
 
 export default function Button({ category }) {
-  const { activeGenres, setActiveGenres, getPopularMoviesByGenres } =
-    useMovieContext();
+  const {
+    activeGenres,
+    setActiveGenres,
+    getPopularMoviesByGenres,
+    currentPage,
+  } = useMovieContext();
 
   const [isGenreActive, setIsGenreActive] = useState(false);
+
+  useEffect(() => {
+    setIsGenreActive(false); // everytime someone changes the page, the selected genres must be undone
+  }, [currentPage]);
 
   function addCategory() {
     if (isGenreActive) {

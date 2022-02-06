@@ -3,6 +3,7 @@ import * as S from "./styles";
 
 export default function MoviesItem({ cover, title, date, id }) {
   const navigate = useNavigate();
+
   return (
     <div>
       <S.MovieItemContainer onClick={() => navigate(`/movie/${id}`)}>

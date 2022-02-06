@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import api from "../../api/api";
+import Cast from "../../components/Cast";
 import {
   getCertification,
   getDuration,
@@ -87,10 +88,15 @@ export default function Movie() {
               {currentMovieDetails.title} ({getReleaseYear(currentMovieDetails)}
               )
             </h1>
-            <p>{getCertification(currentMovieDetails)}</p>
-            <p>{getFormattedReleaseDate(currentMovieDetails)} (BR)</p>
-            <p>{getGenres(currentMovieDetails.genres)}</p>
-            <p>{getDuration(currentMovieDetails.runtime)}</p>
+            <S.MovieNumbers>
+              <p>{getCertification(currentMovieDetails)} anos</p>
+              <span className="dot">•</span>
+              <p>{getFormattedReleaseDate(currentMovieDetails)} (BR)</p>
+              <span className="dot">•</span>
+              <p>{getGenres(currentMovieDetails.genres)}</p>
+              <span className="dot">•</span>
+              <p>{getDuration(currentMovieDetails.runtime)}</p>
+            </S.MovieNumbers>
             <S.Sinopse>
               <h4>Sinopse</h4>
               <p>{currentMovieDetails.overview}</p>
@@ -106,7 +112,10 @@ export default function Movie() {
           </S.MovieDescription>
         </S.Banner>
       </S.BannerContainer>
-      <S.MovieContent></S.MovieContent>
+      <S.MovieContent>
+        <h2>Elenco Original</h2>
+        <Cast cast={currentMovieDetails.credits.cast.slice(0, 10)} />
+      </S.MovieContent>
     </Base>
   );
 }

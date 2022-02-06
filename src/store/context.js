@@ -11,7 +11,7 @@ export default function MoviesContextProvider({ children }) {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  console.log("currentPage", currentPage);
+  // console.log("currentPage", currentPage);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -70,14 +70,6 @@ export default function MoviesContextProvider({ children }) {
   }, [currentPage]);
 
   function getPopularMoviesByGenres(genres) {
-    // console.log("mostPopulars", mostPopulars);
-    // console.log("activeGenres", genres);
-    // const popularMoviesByGenres = mostPopulars.filter(({ genre_ids }) =>
-    //   genre_ids.some((genre_id) => genre_id === genres.map((genre) => genre))
-    // );
-    // console.log("popularMoviesByGenres", popularMoviesByGenres);
-    // setMostPopulars(popularMoviesByGenres);
-
     if (genres.length === 0) {
       // if (currentPage === 1) {}
       getPopularMovies(currentPage);
@@ -112,7 +104,9 @@ export default function MoviesContextProvider({ children }) {
         activeGenres,
         setActiveGenres,
         getPopularMoviesByGenres,
+        currentPage,
         setCurrentPage,
+        getPopularMovies,
       }}
     >
       {children}
@@ -128,7 +122,9 @@ export function useMovieContext() {
     activeGenres,
     setActiveGenres,
     getPopularMoviesByGenres,
+    currentPage,
     setCurrentPage,
+    getPopularMovies,
   } = useContext(MoviesContext);
 
   return {
@@ -138,6 +134,8 @@ export function useMovieContext() {
     activeGenres,
     setActiveGenres,
     getPopularMoviesByGenres,
+    currentPage,
     setCurrentPage,
+    getPopularMovies,
   };
 }

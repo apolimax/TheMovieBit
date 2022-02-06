@@ -39,9 +39,23 @@ export const Image = styled.div`
 export const MovieDescription = styled.div`
   color: #fff;
   h1 {
-    /* text-align: center; */
     max-width: 342px;
   }
+`;
+
+export const MovieNumbers = styled.div`
+  .dot {
+    display: none;
+  }
+
+  ${media.greaterThan("large")`
+    display: flex;
+    gap: 7px;
+
+    .dot {
+      display: block;
+    }
+  `}
 `;
 
 export const Sinopse = styled.div`
@@ -59,4 +73,11 @@ export const Crew = styled.div`
   gap: 20px;
 `;
 
-export const MovieContent = styled.div``;
+export const MovieContent = styled.div`
+  margin-top: 40px;
+  padding: 0 0 0 20px;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+`;
