@@ -10,7 +10,7 @@ export default function CastItem({ actor }) {
             alt=""
           />
           <p className="actor_name">{actor.name}</p>
-          <p>{actor.character}</p>
+          <p className="actor_character">{actor.character}</p>
         </>
       )}
     </S.CastItemContainer>

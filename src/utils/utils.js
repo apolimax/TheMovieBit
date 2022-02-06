@@ -46,7 +46,17 @@ export function getDuration(runtime) {
 }
 
 export function getGenres(genres) {
-  const generos = genres?.map((genre) => `${genre.name}, `).join(" ");
+  const generos = genres
+    ?.map((genre, index) => {
+      if (index === genres.length - 1) {
+        // if is the last genre to show, there is no comma
+        return `${genre.name}`;
+      } else {
+        return `${genre.name}, `;
+      }
+    })
+    .join(" ");
+  // const generos = genres?.map((genre) => `${genre.name}, `).join(" ");
 
   return generos;
 }
