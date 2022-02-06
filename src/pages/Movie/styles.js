@@ -80,7 +80,6 @@ export const Crew = styled.div`
 
 export const MovieContent = styled.div`
   padding: 0 0 0 20px;
-  margin-bottom: 80px;
 
   h2 {
     margin-top: 40px;
@@ -90,6 +89,10 @@ export const MovieContent = styled.div`
       margin-top: 80px;
     }
   }
+
+  ${media.greaterThan("medium")`
+    margin: 70px 60px 80px;;
+  `}
 `;
 
 export const Trailer = styled.div`

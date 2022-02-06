@@ -1,6 +1,7 @@
 import FiltersContainer from "../../components/FiltersContainer";
 import MoviesListContainer from "../../components/MoviesListContainer";
 import Pagination from "../../components/Pagination";
+import Rating from "../../components/Rating";
 import { useMovieContext } from "../../store/context";
 import Base from "../Base";
 
@@ -18,6 +19,8 @@ export default function Home() {
       <MoviesListContainer movies={mostPopulars} />
 
       <Pagination changePage={changePage} />
+
+      {/* <Rating rating={5} /> */}
     </Base>
   );
 }

@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 
-const theme = {
+export const theme = {
   colors: {
     lightPurple: "#5c16c5",
     darkPurple: "#2d0c5e",
