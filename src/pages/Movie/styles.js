@@ -3,11 +3,16 @@ import media from "styled-media-query";
 
 export const BannerContainer = styled.div`
   background-color: ${(props) => props.theme.colors.darkPurple};
-  padding: 0 20px;
+  padding: 40px 20px 80px 20px;
+  /* margin-bottom: 30px; */
+
+  ${media.greaterThan("medium")`
+    padding: 40px 20px 0 20px;
+  `}
 `;
 
 export const Banner = styled.div`
-  padding-top: 30px;
+  /* padding-top: 30px; */
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -80,4 +85,12 @@ export const MovieContent = styled.div`
   h2 {
     margin-bottom: 10px;
   }
+`;
+
+export const Trailer = styled.div`
+  height: 250px;
+  ${media.greaterThan("large")`
+    width: 60%;
+    height: 510px;
+  `}
 `;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ReactPlayer from "react-player/youtube";
 
 import api from "../../api/api";
 import Cast from "../../components/Cast";
@@ -115,6 +116,15 @@ export default function Movie() {
       <S.MovieContent>
         <h2>Elenco Original</h2>
         <Cast cast={currentMovieDetails.credits.cast.slice(0, 10)} />
+        <S.Trailer>
+          <h2>Trailer</h2>
+          <ReactPlayer
+            controls
+            width="100%"
+            height="100%"
+            url={`https://www.youtube.com/watch?v=${currentMovieDetails.videos.results[0].key}`}
+          />
+        </S.Trailer>
       </S.MovieContent>
     </Base>
   );
