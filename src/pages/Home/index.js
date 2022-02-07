@@ -1,12 +1,13 @@
 import FiltersContainer from "../../components/FiltersContainer";
 import MoviesListContainer from "../../components/MoviesListContainer";
 import Pagination from "../../components/Pagination";
-import Rating from "../../components/Rating";
+// import Rating from "../../components/Rating";
 import { useMovieContext } from "../../store/context";
 import Base from "../Base";
 
 export default function Home() {
-  const { mostPopulars, setCurrentPage, setActiveGenres } = useMovieContext();
+  const { mostPopulars, genres, setCurrentPage, setActiveGenres } =
+    useMovieContext();
 
   function changePage({ selected }) {
     setCurrentPage(selected + 1);
@@ -15,7 +16,7 @@ export default function Home() {
 
   return (
     <Base>
-      <FiltersContainer />
+      <FiltersContainer genres={genres} />
       <MoviesListContainer movies={mostPopulars} />
 
       <Pagination changePage={changePage} />

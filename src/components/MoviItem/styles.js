@@ -19,5 +19,5 @@ export const MovieItemContainer = styled.div`
 `;
 
 export const Date = styled.p`
-  color: ${(props) => props.theme.colors.gray};
+  color: #646464;
 `;

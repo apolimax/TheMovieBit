@@ -2,7 +2,7 @@ import styled from "styled-components";
 import media from "styled-media-query";
 
 export const FiltersContainer = styled.div`
-  background-color: ${(props) => props.theme.colors.darkPurple};
+  background-color: #2d0c5e;
   padding: 16px;
 
   display: flex;

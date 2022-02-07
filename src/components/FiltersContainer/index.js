@@ -1,13 +1,8 @@
-import { useMovieContext } from "../../store/context";
 import Button from "../Button";
 
 import * as S from "./styles";
 
-export default function FiltersContainer() {
-  const { genres } = useMovieContext();
-
-  // console.log("categories", genres);
-
+export default function FiltersContainer({ genres }) {
   return (
     <S.FiltersContainer>
       <h2>Milhões de filmes, séries e pessoas para descobrir. Explore já.</h2>

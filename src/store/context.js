@@ -23,7 +23,7 @@ export default function MoviesContextProvider({ children }) {
         `movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR&page=${currentPage}`
       );
 
-      // console.log("movies response", response);
+      console.log("most populars", response.data.results);
 
       if (response.status !== 200) {
         throw new Error("Failed to load the data from the API");

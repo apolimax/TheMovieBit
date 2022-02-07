@@ -2,7 +2,8 @@ import styled from "styled-components";
 import media from "styled-media-query";
 
 export const HeaderContainer = styled.header`
-  background-color: ${(props) => props.theme.colors.lightPurple};
+  background-color: #5c16c5;
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,4 @@
-import { screen } from "@testing-library/react";
-import { renderWithTheme } from "../../utils/renderWithTheme";
+import { render, screen } from "@testing-library/react";
 import Header from ".";
 
 jest.mock("react-router-dom", () => {
@@ -13,13 +12,10 @@ jest.mock("react-router-dom", () => {
 });
 
 describe("<Header />", () => {
-  it("render correctly", () => {
-    renderWithTheme(<Header />);
+  it("renders correctly", () => {
+    render(<Header />);
 
-    screen.debug();
-
-    // expect(screen.getByRole("img")).toBeInTheDocument();
-    // expect(screen.getByRole("heading")).toBeInTheDocument();
-    // debug();
+    expect(screen.getByRole("banner")).toHaveStyle("background-color: #5c16c5");
+    expect(screen.getByRole("img", { name: "TMDB logo" })).toBeInTheDocument();
   });
 });

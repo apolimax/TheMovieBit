@@ -8,14 +8,14 @@ import GLobalStyle from "./styles/Global";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <MoviesContextProvider>
-        <Theme>
+    <Theme>
+      <BrowserRouter>
+        <MoviesContextProvider>
           <GLobalStyle />
           <App />
-        </Theme>
-      </MoviesContextProvider>
-    </BrowserRouter>
+        </MoviesContextProvider>
+      </BrowserRouter>
+    </Theme>
   </React.StrictMode>,
   document.getElementById("root")
 );
