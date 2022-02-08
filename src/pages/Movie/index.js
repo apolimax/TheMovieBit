@@ -54,29 +54,6 @@ export default function Movie() {
     getMovieDetails(movieId);
   }, [movieId]);
 
-  // function getCrew(movie, department, n) {
-  //   const crew = movie.credits.crew.filter(
-  //     (item) => item.department === departmen;
-
-  //   return crew;
-  // }
-
-  // function getCrew(movie) {
-
-  //   const directing = movie.credits.crew.filter(
-  //     (item) => item.department === "Directing"
-  //   );
-
-  //   return {
-  //     writing: writing.splice(0, 3), // only the first two people in writing
-  //     directing: directing.splice(0, 3), // only the first two people in directing
-  //   };
-
-  //   // console.log("writing", writing);
-  //   // console.log("directing", directing);
-  // }
-
-  // movie details: poster, title, release year, age, release date brazil, genres, duration, grade, casting, movie description, trailer, recomendation
   if (isLoading) {
     return <p>Loading content ...</p>;
   }

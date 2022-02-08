@@ -55,8 +55,7 @@ export function getGenres(genres) {
         return `${genre.name}, `;
       }
     })
-    .join(" ");
-  // const generos = genres?.map((genre) => `${genre.name}, `).join(" ");
+    .join("");
 
   return generos;
 }
