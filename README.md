@@ -32,5 +32,5 @@ yarn test
 ## Technologies
 - [React.js](https://pt-br.reactjs.org/)
 - [Styled Components](https://styled-components.com/)
-- [Jest](jestjs.io)
+- [Jest](https://jestjs.io/)
 - [Testing Library](https://testing-library.com/)
