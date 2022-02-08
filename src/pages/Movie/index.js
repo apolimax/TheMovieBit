@@ -4,6 +4,7 @@ import ReactPlayer from "react-player/youtube";
 
 import api from "../../api/api";
 import Cast from "../../components/Cast";
+import Rating from "../../components/Rating";
 import {
   getCertification,
   getDuration,
@@ -103,6 +104,7 @@ export default function Movie() {
               <span className="dot">•</span>
               <p>{getDuration(currentMovieDetails.runtime)}</p>
             </S.MovieNumbers>
+            <Rating rating={currentMovieDetails.vote_average * 10} />
             <S.Sinopse>
               <h4>Sinopse</h4>
               <p>{currentMovieDetails.overview}</p>

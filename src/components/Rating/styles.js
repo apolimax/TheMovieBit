@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
+  margin-top: 20px;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #fff;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  background: #1d0840;
+  /* box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2); */
 
   .percent {
     position: relative;
@@ -22,24 +24,24 @@ export const Box = styled.div`
       height: 150px;
 
       circle {
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         fill: none;
-        stroke-width: 10;
+        stroke-width: 5;
         stroke: #000;
         transform: translate(5px, 5px);
-        stroke-dasharray: 440;
-        stroke-dashoffset: 440;
+        stroke-dasharray: 147;
+        stroke-dashoffset: 147;
 
         &:nth-child(1) {
           stroke-dashoffset: 0;
-          stroke: #f3f3f3;
+          stroke: #1d0840;
         }
 
         &:nth-child(2) {
           stroke-dashoffset: ${(props) =>
-            `calc(440 - (440 * ${props.rating}) / 100)`};
-          stroke: #03a9f4;
+            `calc(147 - (147 * ${props.rating}) / 100)`};
+          stroke: #14ff00;
         }
       }
     }
@@ -53,21 +55,22 @@ export const Box = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #111;
+      color: #14ff00;
 
       h2 {
-        font-size: 2rem;
+        font-size: 1rem;
 
         span {
-          font-size: 1rem;
+          font-size: 0.7rem;
         }
       }
     }
-  }
 
-  .text {
-    padding: 10px 0 0;
-    color: #999;
-    font-weight: 700;
+    .text {
+      position: absolute;
+      top: 55px;
+      left: 120px;
+      width: 100%;
+    }
   }
 `;
