@@ -61,7 +61,7 @@ export const Box = styled.div`
         font-size: 1rem;
 
         span {
-          font-size: 0.7rem;
+          font-size: 0.75rem;
         }
       }
     }
